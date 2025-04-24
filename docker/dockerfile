@@ -1,0 +1,18 @@
+# Usando uma imagem oficial do Node.js
+FROM node:14
+
+# Criando e acessando o diretório de trabalho
+WORKDIR /usr/src/app
+
+# Copiando o package.json e instalando dependências
+COPY package*.json ./
+RUN npm install
+
+# Copiando o código da aplicação
+COPY . .
+
+# Expondo a porta da aplicação
+EXPOSE 8080
+
+# Comando para rodar a aplicação
+CMD ["node", "server.js"]
