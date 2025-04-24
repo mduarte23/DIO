@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - microservice-network
+
+  db:
+    build: ./db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: microservice_db
+    ports:
+      - "3306:3306"
+    networks:
+      - microservice-network
+
+networks:
+  microservice-network:
+    driver: bridge
